@@ -1,0 +1,14 @@
+package br.com.fiap.trabalhocloudfinal.service;
+
+
+import br.com.fiap.trabalhocloudfinal.domain.Address;
+import br.com.fiap.trabalhocloudfinal.request.AddressRequest;
+import br.com.fiap.trabalhocloudfinal.response.AddressResponse;
+
+public interface AddressService {
+
+    Address findByZipcode(String zipcode);
+
+    AddressResponse createAddress(AddressRequest request, String document);
+
+}
