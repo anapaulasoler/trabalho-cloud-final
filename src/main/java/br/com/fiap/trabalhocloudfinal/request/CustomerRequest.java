@@ -1,5 +1,6 @@
 package br.com.fiap.trabalhocloudfinal.request;
 
+import br.com.fiap.trabalhocloudfinal.domain.Address;
 import br.com.fiap.trabalhocloudfinal.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
@@ -49,19 +50,19 @@ public class CustomerRequest {
     @Valid
     @JsonProperty
     @NotNull
-    private List<AddressRequest> address;
+    private AddressRequest address;
 
-    
-    public List<AddressRequest> getAddress() {
+
+    public AddressRequest getAddress() {
         return address;
-    }
-
-    public void setAddressRequestList(List<AddressRequest> address) {
-        this.address = address;
     }
 
     public String getDocument() {
         return document;
+    }
+
+    public void setAddress(AddressRequest address) {
+        this.address = address;
     }
 
     public void setDocument(String document) {

@@ -6,9 +6,11 @@ import br.com.fiap.trabalhocloudfinal.domain.Customer;
 import br.com.fiap.trabalhocloudfinal.request.CustomerRequest;
 import br.com.fiap.trabalhocloudfinal.response.CustomerResponse;
 
+import java.io.IOException;
+
 public interface CustomerService {
 
-    CustomerResponse create(CustomerRequest request );
+    CustomerResponse create(CustomerRequest request ) throws IOException;
 
     Customer findByDocument(String document);
 }

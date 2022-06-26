@@ -1,6 +1,5 @@
 package br.com.fiap.trabalhocloudfinal.controller;
 
-import br.com.fiap.trabalhocloudfinal.domain.Address;
 import br.com.fiap.trabalhocloudfinal.domain.Customer;
 import br.com.fiap.trabalhocloudfinal.request.CustomerRequest;
 import br.com.fiap.trabalhocloudfinal.response.CustomerResponse;
@@ -15,14 +14,15 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/customer")
 @Validated
 public class CustomerController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
-	
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+
     private final CustomerService customerService;
 
     @Autowired
@@ -31,16 +31,16 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@Valid @RequestBody CustomerRequest request) {
+    public ResponseEntity<?> create(@Valid @RequestBody CustomerRequest request) throws IOException {
 
-    	LOGGER.info("stage=init method=CustomerController.create "
-				+ "Message=Start Create Customer request: {} ", request);
-    	
+        LOGGER.info("stage=init method=CustomerController.create "
+                + "Message=Start Create Customer request: {} ", request);
+
         CustomerResponse customerResponse = customerService.create(request);
 
-    	LOGGER.info("stage=end method=CustomerController.create "
-				+ "Message=Finish Create Customer response: {} ", customerResponse);
-    	
+        LOGGER.info("stage=end method=CustomerController.create "
+                + "Message=Finish Create Customer response: {} ", customerResponse);
+
         return new ResponseEntity<>(customerResponse, (HttpStatus.CREATED));
     }
 

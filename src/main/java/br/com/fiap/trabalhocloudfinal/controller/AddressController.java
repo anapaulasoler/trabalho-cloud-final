@@ -43,18 +43,18 @@ public class AddressController {
 		
 	}
 
-	@PostMapping(path = "/{document}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> create(@PathVariable(value = "document", required = true) String document,
-			@Valid @RequestBody AddressRequest request) {
-
-    	LOGGER.info("stage=init method=AddressController.create "
-				+ "Message=Start Create Address request:{} document:{}", request, document);
-    	
-		AddressResponse addressResponse = addressService.createAddress(request, document);
-
-		LOGGER.info("stage=init method=AddressController.create "
-				+ "Message=Start Create Address response:{}", addressResponse);
-		
-		return new ResponseEntity<>(addressResponse, (HttpStatus.CREATED));
-	}
+//	@PostMapping(path = "/{document}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<?> create(@PathVariable(value = "document", required = true) String document,
+//			@Valid @RequestBody AddressRequest request) {
+//
+//    	LOGGER.info("stage=init method=AddressController.create "
+//				+ "Message=Start Create Address request:{} document:{}", request, document);
+//
+//		AddressResponse addressResponse = addressService.createAddress(request, document);
+//
+//		LOGGER.info("stage=init method=AddressController.create "
+//				+ "Message=Start Create Address response:{}", addressResponse);
+//
+//		return new ResponseEntity<>(addressResponse, (HttpStatus.CREATED));
+//	}
 }

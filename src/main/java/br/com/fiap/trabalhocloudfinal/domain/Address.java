@@ -34,8 +34,7 @@ public class Address implements Serializable {
 	@Column(nullable = false)
 	private String street;
 
-	@NotEmpty
-	@Column(nullable = false)
+	@Column
 	private String number;
 
 	@Column(nullable = true)

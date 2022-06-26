@@ -8,23 +8,18 @@ public class AddressRequest {
 	@NotEmpty
 	private String zipcode;
 
-	@NotEmpty
 	private String street;
 
 	private String number;
 
 	private String complement;
 
-	@NotEmpty
 	private String neighborhood;
 
-	@NotEmpty
 	private String city;
 
-	@NotNull
 	private String state;
 
-	@NotNull
 	private String country;
 
 	public String getZipcode() {
