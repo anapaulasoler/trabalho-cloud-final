@@ -6,6 +6,7 @@ import br.com.fiap.trabalhocloudfinal.domain.Customer;
 import br.com.fiap.trabalhocloudfinal.repository.CustomerRepository;
 import br.com.fiap.trabalhocloudfinal.request.CustomerRequest;
 import br.com.fiap.trabalhocloudfinal.response.CustomerResponse;
+import br.com.fiap.trabalhocloudfinal.service.AddressService;
 import br.com.fiap.trabalhocloudfinal.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,16 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerResponseConverter customerResponseConverter;
     private final CustomerRequestConverter customerRequestConverter;
+    private final AddressService addressService;
 
     @Autowired
     public CustomerServiceImpl(final CustomerRepository customerRepository,
                                final CustomerResponseConverter customerResponseConverter,
-                               final CustomerRequestConverter customerRequestConverter) {
+                               final CustomerRequestConverter customerRequestConverter, AddressService addressService) {
         this.customerRepository = customerRepository;
         this.customerResponseConverter = customerResponseConverter;
         this.customerRequestConverter = customerRequestConverter;
+        this.addressService = addressService;
     }
 
 

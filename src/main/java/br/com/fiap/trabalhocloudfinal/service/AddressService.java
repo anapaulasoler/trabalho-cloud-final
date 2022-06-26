@@ -5,10 +5,12 @@ import br.com.fiap.trabalhocloudfinal.domain.Address;
 import br.com.fiap.trabalhocloudfinal.request.AddressRequest;
 import br.com.fiap.trabalhocloudfinal.response.AddressResponse;
 
+import java.io.IOException;
+
 public interface AddressService {
 
-    Address findByZipcode(String zipcode);
+    Address findByZipcodeByViaCep(String zipcode) throws IOException;
 
-    AddressResponse createAddress(AddressRequest request, String document);
+//    AddressResponse createAddress(AddressRequest request, String document);
 
 }

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping(path = "/api/address")
@@ -28,12 +29,12 @@ public class AddressController {
 	}
 
 	@GetMapping(path = "/{zipcode}")
-	public ResponseEntity<?> find(@PathVariable("zipcode") String zipcode) {
+	public ResponseEntity<?> find(@PathVariable("zipcode") String zipcode) throws IOException {
 
     	LOGGER.info("stage=init method=AddressController.find "
 				+ "Message=Start Find Address request: {} ", zipcode);
     	
-		Address address = addressService.findByZipcode(zipcode);
+		Address address = addressService.findByZipcodeByViaCep(zipcode);
 
     	LOGGER.info("stage=end method=AddressController.find "
 				+ "Message=Finish Find Address response: {} ", address);
