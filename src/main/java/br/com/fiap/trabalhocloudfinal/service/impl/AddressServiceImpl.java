@@ -22,56 +22,40 @@ import java.net.URLConnection;
 @Service
 public class AddressServiceImpl implements AddressService {
 
-    private AddressRepository addressRepository;
-    private AddressResponseConverter addressResponseConverter;
-    private AddressRequestConverter addressRequestConverter;
-    private CustomerRepository customerRepository;
+	private AddressRepository addressRepository;
+	private AddressResponseConverter addressResponseConverter;
+	private AddressRequestConverter addressRequestConverter;
+	private CustomerRepository customerRepository;
 
-    private AddressFromAdressToResponseConverter addressFromAdressToResponseConverter;
+	private AddressFromAdressToResponseConverter addressFromAdressToResponseConverter;
 
-    @Autowired
-    public AddressServiceImpl(AddressRepository addressRepository, AddressResponseConverter addressResponseConverter,
-                              AddressRequestConverter addressRequestConverter, CustomerRepository customerRepository, AddressFromAdressToResponseConverter addressFromAdressToResponseConverter) {
-        this.addressRepository = addressRepository;
-        this.addressResponseConverter = addressResponseConverter;
-        this.addressRequestConverter = addressRequestConverter;
-        this.customerRepository = customerRepository;
-        this.addressFromAdressToResponseConverter = addressFromAdressToResponseConverter;
-    }
+	@Autowired
+	public AddressServiceImpl(AddressRepository addressRepository, AddressResponseConverter addressResponseConverter,
+			AddressRequestConverter addressRequestConverter, CustomerRepository customerRepository,AddressFromAdressToResponseConverter addressFromAdressToResponseConverter) {
+		this.addressRepository = addressRepository;
+		this.addressResponseConverter = addressResponseConverter;
+		this.addressRequestConverter = addressRequestConverter;
+		this.customerRepository = customerRepository;
+		this.addressFromAdressToResponseConverter = addressFromAdressToResponseConverter;
+	}
 
-    @Override
-    public Address findByZipcodeByViaCep(String zipcode) throws IOException {
+	@Override
+	public Address findByZipcodeByViaCep(String zipcode) throws IOException {
 
-        URL url = new URL("https://viacep.com.br/ws/" + zipcode + "/json");
-        URLConnection connection = url.openConnection();
-        InputStream is = connection.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-        String cep;
-        StringBuilder jsCep = new StringBuilder();
+		URL url = new URL("https://viacep.com.br/ws/" + zipcode + "/json");
+		URLConnection connection = url.openConnection();
+		InputStream is = connection.getInputStream();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+		String cep;
+		StringBuilder jsCep = new StringBuilder();
 
-        while ((cep = br.readLine()) != null) {
-            jsCep.append(cep);
-        }
+		while ((cep = br.readLine()) != null) {
+			jsCep.append(cep);
+		}
 
-        AddressTo at = new Gson().fromJson(jsCep.toString(), AddressTo.class);
+		AddressTo at = new Gson().fromJson(jsCep.toString(),AddressTo.class);
+		Address address = addressFromAdressToResponseConverter.apply(at);
 
-        Address address = addressFromAdressToResponseConverter.apply(at);
-
-        return address;
-    }
-
-//
-//	@Override
-//	public AddressResponse createAddress(AddressRequest request, String document) {
-//
-//		Customer customer = customerRepository.findByDocument(document);
-//
-//		if (isNull(customer)) {
-//			throw new ObjectNotFoundException("Cliente não localizado!");
-//		}
-//
-//		Address address = addressRequestConverter.apply(request, customer);
-//		addressRepository.save(address);
-//		return addressResponseConverter.apply(address);
-//	}
+		return address;
+	}
 }

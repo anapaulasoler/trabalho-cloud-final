@@ -29,5 +29,4 @@ public class AddressRequestConverter implements BiFunction<AddressRequest, Custo
         return result;
 
     }
-
 }

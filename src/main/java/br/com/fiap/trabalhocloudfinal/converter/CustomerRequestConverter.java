@@ -11,6 +11,8 @@ import br.com.fiap.trabalhocloudfinal.util.UtilDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -32,7 +34,7 @@ public class CustomerRequestConverter implements Function<CustomerRequest, Custo
         customerNew.setLastName(customerRequest.getLastName());
         customerNew.setFullName(customerRequest.getFullName());
         customerNew.setBirthDate(utilDateFormat.dateConverter(customerRequest.getBirthDate()));
-
+        customerNew.setCreatedAt(LocalDateTime.now());
         customerNew.setStatus(CustomerStatus.ACTIVE);
 
         List<Address> addressList = new ArrayList<>();
@@ -49,7 +51,6 @@ public class CustomerRequestConverter implements Function<CustomerRequest, Custo
         addressItem.setCity(customerRequest.getAddress().getCity());
         addressItem.setState(State.valueOf(customerRequest.getAddress().getState()));
         addressItem.setCountry(Country.valueOf(customerRequest.getAddress().getCountry()));
-
         addressList.add(addressItem);
         customerNew.setAddresses(addressList);
 

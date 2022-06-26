@@ -1,7 +1,6 @@
 package br.com.fiap.trabalhocloudfinal.request;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 public class AddressRequest {
 

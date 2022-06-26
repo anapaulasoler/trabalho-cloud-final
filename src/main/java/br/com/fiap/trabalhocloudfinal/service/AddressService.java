@@ -11,6 +11,5 @@ public interface AddressService {
 
     Address findByZipcodeByViaCep(String zipcode) throws IOException;
 
-//    AddressResponse createAddress(AddressRequest request, String document);
 
 }

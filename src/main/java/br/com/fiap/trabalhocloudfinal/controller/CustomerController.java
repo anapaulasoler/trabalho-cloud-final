@@ -1,7 +1,7 @@
 package br.com.fiap.trabalhocloudfinal.controller;
 
-import br.com.fiap.trabalhocloudfinal.domain.Customer;
 import br.com.fiap.trabalhocloudfinal.request.CustomerRequest;
+import br.com.fiap.trabalhocloudfinal.request.CustomerUpdateRequest;
 import br.com.fiap.trabalhocloudfinal.response.CustomerResponse;
 import br.com.fiap.trabalhocloudfinal.service.CustomerService;
 import org.slf4j.Logger;
@@ -50,7 +50,7 @@ public class CustomerController {
         LOGGER.info("stage=init method=AddressController.find "
                 + "Message=Start Find Address request: {} ", document);
 
-        Customer customer = customerService.findByDocument(document);
+        CustomerResponse customer = customerService.findByDocument(document);
 
         LOGGER.info("stage=end method=AddressController.find "
                 + "Message=Finish Find Address response: {} ", document);
@@ -59,4 +59,34 @@ public class CustomerController {
 
     }
 
+    @DeleteMapping(path = "/delete/{document}")
+    public ResponseEntity<?> delete(@PathVariable(value = "document") String document) {
+
+        LOGGER.info("stage=init method=AddressController.find "
+                + "Message=Start Find Address request: {} ", document);
+
+        customerService.deleteByDocument(document);
+
+        LOGGER.info("stage=end method=AddressController.find "
+                + "Message=Finish Find Address response: {} ", document);
+
+        return ResponseEntity.ok().body("");
+    }
+
+    @PutMapping(path = "/update/{document}")
+    public ResponseEntity<?> update(@PathVariable("document") String document,
+                                    @Valid @RequestBody CustomerUpdateRequest request) {
+
+        LOGGER.info("stage=init method=AddressController.find "
+                + "Message=Start Find Address request: {} ", document);
+
+
+        CustomerResponse customer = customerService.update(document,request);
+
+        LOGGER.info("stage=end method=AddressController.find "
+                + "Message=Finish Find Address response: {} ", document);
+
+        return ResponseEntity.ok().body(customer);
+
+    }
 }
