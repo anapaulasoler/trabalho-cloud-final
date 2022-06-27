@@ -19,7 +19,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @Component
-public class CustomerUpdateRequestConverter implements BiFunction<CustomerUpdateRequest, Customer, Customer > {
+public class CustomerUpdateRequestConverter implements BiFunction<CustomerUpdateRequest, Customer, Customer> {
 
     @Autowired
     private UtilDateFormat utilDateFormat;
@@ -61,11 +61,11 @@ public class CustomerUpdateRequestConverter implements BiFunction<CustomerUpdate
     @Override
     public Customer apply(CustomerUpdateRequest request, Customer result) {
         Customer customerNew = new Customer();
-
+        customerNew.setId(result.getId());
         customerNew.setDocument(result.getDocument());
 
         customerNew.setGender(Gender.valueOf(request.getGender().name()));
-        customerNew.setEmail(request.getEmail());
+        customerNew.setEmail(result.getEmail());
         customerNew.setFirstName(request.getFirstName());
         customerNew.setLastName(request.getLastName());
         customerNew.setFullName(request.getFullName());
@@ -74,7 +74,7 @@ public class CustomerUpdateRequestConverter implements BiFunction<CustomerUpdate
         customerNew.setCreatedAt(result.getCreatedAt());
         customerNew.setUpdatedAt(LocalDateTime.now());
         customerNew.setStatus(CustomerStatus.ACTIVE);
-        customerNew.setAddresses(result.getAddresses());
+//        customerNew.setAddresses(result.getAddresses());
 
         return customerNew;
     }

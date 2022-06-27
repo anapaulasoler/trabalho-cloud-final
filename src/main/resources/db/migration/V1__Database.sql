@@ -33,7 +33,6 @@ CREATE TABLE `customer` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_customer_document` (`document`),
-  UNIQUE KEY `UK_customer_email` (`email`),
   KEY `customer_document` (`document`),
   KEY `customer_email` (`email`),
   KEY `customer_full_name` (`full_name`)

@@ -28,12 +28,14 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerResponseConverter customerResponseConverter;
     private final CustomerRequestConverter customerRequestConverter;
     private final AddressService addressService;
-    private CustomerUpdateRequestConverter customerUpdateRequestConverter;
+    private final CustomerUpdateRequestConverter customerUpdateRequestConverter;
+
 
     @Autowired
     public CustomerServiceImpl(final CustomerRepository customerRepository,
                                final CustomerResponseConverter customerResponseConverter,
-                               final CustomerRequestConverter customerRequestConverter, AddressService addressService, CustomerUpdateRequestConverter customerUpdateRequestConverter) {
+                               final CustomerRequestConverter customerRequestConverter, AddressService addressService,
+                               final CustomerUpdateRequestConverter customerUpdateRequestConverter) {
         this.customerRepository = customerRepository;
         this.customerResponseConverter = customerResponseConverter;
         this.customerRequestConverter = customerRequestConverter;

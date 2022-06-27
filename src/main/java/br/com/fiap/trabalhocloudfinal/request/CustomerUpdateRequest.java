@@ -19,8 +19,6 @@ public class CustomerUpdateRequest {
 
     private String fullName;
 
-    private String email;
-
     private Gender gender;
 
     public String getFirstName() {
@@ -45,14 +43,6 @@ public class CustomerUpdateRequest {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Gender getGender() {

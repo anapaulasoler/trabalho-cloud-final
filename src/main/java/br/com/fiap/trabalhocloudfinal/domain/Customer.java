@@ -32,15 +32,12 @@ public class Customer implements Serializable {
 	@Column(nullable = false)
 	private String document;
 
-	@NotEmpty
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
 
-	@NotEmpty
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
-	@NotEmpty
 	@Column(name = "full_name", nullable = false)
 	private String fullName;
 
@@ -48,7 +45,6 @@ public class Customer implements Serializable {
 	@Column(name = "email", nullable = false)
 	private String email;
 
-	@NotNull
 	@Column(name = "gender", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
